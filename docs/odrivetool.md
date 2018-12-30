@@ -136,8 +136,28 @@ sudo dfu-util -a 0 -s 0x08000000 -D build/ODriveFirmware.bin
 ```
 
 #### MacOS
-**This section needs more detail. Please consider adding detail if you got it to work.**
-You may be able to use [dfu-util](http://dfu-util.sourceforge.net/) to upgrade the firmware. The command should be similar to the Linux instructions.
+Install `dfu-util`:
+```text
+brew install dfu-util
+```
+
+Force DFU mode, as per the instructions above.
+In the Firmware directory, after finishing building the firmware:
+```text
+ sudo dfu-util --device , -a 0 -s 0x08000000 -D build/ODriveFirmware.bin
+```
+
+(To get .bin plain binary firmware from .hex file, you can use:
+```text
+arm-none-eabi-objcopy -I ihex --output-target=binary build/ODriveFirmware.hex build/ODriveFirmware.bin
+```
+To install arm-none-eabi-objcopy:
+```text
+brew tap PX4/homebrew-px4
+brew update
+brew install gcc-arm-none-eabi
+```
+)
 
 ## Flashing with an STLink
 
